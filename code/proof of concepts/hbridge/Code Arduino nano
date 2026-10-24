@@ -1,0 +1,60 @@
+// DRV8833 - Arduino Nano
+// Test: beide motoren van achteruit naar vooruit
+
+// Motor A
+const int IN1 = 5;
+const int IN2 = 6;
+
+// Motor B
+const int IN3 = 9;
+const int IN4 = 11;
+
+void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+
+  Serial.begin(9600);
+  Serial.println("Motor test gestart");
+}
+
+void loop() {
+
+  // Van -255 (achteruit) naar +255 (vooruit)
+  for (int snelheid = -255; snelheid <= 255; snelheid++) {
+
+    // Motor A
+    if (snelheid >= 0) {
+      analogWrite(IN1, snelheid);
+      analogWrite(IN2, 0);
+    } else {
+      analogWrite(IN1, 0);
+      analogWrite(IN2, -snelheid);
+    }
+
+    // Motor B
+    if (snelheid >= 0) {
+      analogWrite(IN3, snelheid);
+      analogWrite(IN4, 0);
+    } else {
+      analogWrite(IN3, 0);
+      analogWrite(IN4, -snelheid);
+    }
+
+    // Toon de huidige snelheid
+    Serial.println(snelheid);
+
+    // Snelheid geleidelijk veranderen
+    delay(10);
+  }
+
+  // Motoren stoppen
+  analogWrite(IN1, 0);
+  analogWrite(IN2, 0);
+  analogWrite(IN3, 0);
+  analogWrite(IN4, 0);
+
+  delay(1000);
+}
+```
