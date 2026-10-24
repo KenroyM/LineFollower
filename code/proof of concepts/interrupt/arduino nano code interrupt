@@ -1,0 +1,29 @@
+```cpp
+// POC - Start/Stop drukknop met hardware-interrupt
+// Arduino Nano
+
+const int startStopKnop = 12;
+const int statusLed = 13;
+
+volatile bool systeemGestart = false;
+
+void setup() {
+  pinMode(startStopKnop, INPUT);
+  pinMode(statusLed, OUTPUT);
+
+  // Pin Change Interrupt voor D12
+  PCICR |= (1 << PCIE0);
+  PCMSK0 |= (1 << PCINT4);
+}
+
+void loop() {
+  digitalWrite(statusLed, systeemGestart);
+}
+
+// Hardware-interrupt voor de Start/Stop drukknop
+ISR(PCINT0_vect) {
+  if (digitalRead(startStopKnop) == HIGH) {
+    systeemGestart = !systeemGestart;
+  }
+}
+```
