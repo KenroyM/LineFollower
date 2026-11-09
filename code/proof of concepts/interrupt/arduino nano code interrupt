@@ -1,4 +1,3 @@
-```cpp
 // POC - Start/Stop drukknop met hardware-interrupt
 // Arduino Nano
 
@@ -26,4 +25,3 @@ ISR(PCINT0_vect) {
     systeemGestart = !systeemGestart;
   }
 }
-```
