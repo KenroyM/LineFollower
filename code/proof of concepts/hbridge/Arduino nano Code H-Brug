@@ -2,12 +2,12 @@
 // Test: beide motoren van achteruit naar vooruit
 
 // Motor A
-const int IN1 = 5;
+const int IN1 = 11;
 const int IN2 = 6;
 
 // Motor B
-const int IN3 = 9;
-const int IN4 = 11;
+const int IN3 = 5;
+const int IN4 = 3;
 
 void setup() {
   pinMode(IN1, OUTPUT);
