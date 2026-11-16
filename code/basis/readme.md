@@ -147,5 +147,3 @@ void onCalibrate()
   EEPROM_writeAnything(0, params);
 }
 ```
-
-Alleen de interrupt moet nog geprogrammeerd worden.
