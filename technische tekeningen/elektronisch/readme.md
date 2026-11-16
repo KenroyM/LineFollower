@@ -1,11 +1,14 @@
 # Elektronica
 
-## H-brug
+## DRV8833 H-brug
 
-Het gedeelte van de H-brug is aangepast omdat J2 aan de achterkant van de print is dichtgesoldeerd.
+Het gedeelte rond de DRV8833 is aangepast omdat jumper J2 aan de achterkant van de print is dichtgesoldeerd.
 
-## EEPROM
+De datasheet noemt de betreffende pinnen **nSLEEP** en **nFAULT** (niet “EEP” en “ULT”):
 
-Voor de Arduino Nano is geen externe EEPROM nodig voor de opgeslagen instellingen, zolang die binnen de beschikbare capaciteit passen. De Nano gebruikt een ATmega328P, die volgens de [datasheet van de ATmega328P](https://ww1.microchip.com/downloads/en/DeviceDoc/atmel-42735-8-bit-avr-microcontroller-atmega328-328p_datasheet.pdf) 1 KB interne EEPROM bevat. Deze EEPROM bewaart gegevens ook wanneer de voeding uitstaat.
+- **nSLEEP** is een ingang, geen uitgang. Deze moet hoog zijn om de driver normaal te laten werken. Als de driver altijd actief moet zijn, kan nSLEEP volgens het ontwerp aan de logische voedingsspanning worden gelegd. Houd deze pin laag om de driver in slaapstand te zetten.
+- **nFAULT** is een foutstatus-uitgang (open-drain). Deze is optioneel voor de besturing: je kunt hem aansluiten op een microcontroller-ingang als je foutmeldingen wilt uitlezen. Als je hem gebruikt, is een pull-up nodig. Als foutstatus niet nodig is, kan nFAULT ongebruikt blijven.
 
-De bestaande code gebruikt EEPROM-functies om gegevens in het geheugen van de microcontroller op te slaan. Een externe EEPROM is alleen nodig als er meer dan 1 KB opslagruimte nodig is of als er een andere specifieke toepassingseis is.
+Controleer bij het aanpassen van J2 dat nSLEEP daadwerkelijk hoog wordt gemaakt; alleen nFAULT kan zonder verlies van de normale motorbesturing ongebruikt blijven.
+
+Bron: [DRV8833-datasheet van Texas Instruments](https://www.ti.com/lit/ds/symlink/drv8833.pdf).
