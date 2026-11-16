@@ -1,5 +1,3 @@
-# basis programma
-
 #include "SerialCommand.h"
 #include "EEPROMAnything.h"
 
@@ -145,8 +143,6 @@ void onCalibrate()
   }
 
   EEPROM_writeAnything(0, params);
-
-
-
-Alleen de Interupt moet nog bij geprogrameerd worden
 }
+
+Alleen de interupt moet nog bij geprogrameerd worden
