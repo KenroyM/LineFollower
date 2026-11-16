@@ -1,3 +1,4 @@
+```cpp
 #include "SerialCommand.h"
 #include "EEPROMAnything.h"
 
@@ -62,16 +63,16 @@ void loop()
     else if (index == 7) position = 30;
     else
     {
-    int sNul = normalised[index];
-    int sMinEen = normalised[index-1];
-    int sPlusEen = normalised[index+1];
+      int sNul = normalised[index];
+      int sMinEen = normalised[index-1];
+      int sPlusEen = normalised[index+1];
 
-    float b = ((float) (sPlusEen - sMinEen)) / 2;
-    float a = sPlusEen - b - sNul;
+      float b = ((float) (sPlusEen - sMinEen)) / 2;
+      float a = sPlusEen - b - sNul;
 
-    position = -b / (2 * a);
-    position += index - 3.5;
-    position *= 10;
+      position = -b / (2 * a);
+      position += index - 3.5;
+      position *= 10;
     }
     SerialPort.print("positie: ");
     SerialPort.println(position);
@@ -91,11 +92,11 @@ void onUnknownCommand(char *command)
 void onSet()
 {
   char* param = sCmd.next();
-  char* value = sCmd.next();  
-  
+  char* value = sCmd.next();
+
   if (strcmp(param, "cycle") == 0) params.cycleTime = atol(value);
   /* parameters een nieuwe waarde geven via het set commando doe je hier ... */
-  
+
   EEPROM_writeAnything(0, params);
 }
 
@@ -110,7 +111,7 @@ void onDebug()
     SerialPort.print(" ");
   }
   SerialPort.println(" ");
-  
+
   SerialPort.print("white: ");
   for (int i = 0; i < 8; i++)
   {
@@ -118,13 +119,14 @@ void onDebug()
     SerialPort.print(" ");
   }
   SerialPort.println(" ");
-  
+
   /* parameters weergeven met behulp van het debug commando doe je hier ... */
-  
+
   SerialPort.print("calculation time: ");
   SerialPort.println(calculationTime);
   calculationTime = 0;
 }
+
 void onCalibrate()
 {
   char* param = sCmd.next();
@@ -132,17 +134,18 @@ void onCalibrate()
   if (strcmp(param, "black") == 0)
   {
     SerialPort.print("start calibrating black...");
-    for (int i = 0; i < 8; i++) params.black[i]=analogRead(sensor[i]);
+    for (int i = 0; i < 8; i++) params.black[i] = analogRead(sensor[i]);
     SerialPort.println("done");
   }
   else if (strcmp(param, "white") == 0)
   {
     SerialPort.print("start calibrating white... ");
-    for(int i = 0; i < 8; i++) params.white[i]=analogRead(sensor[i]);
+    for (int i = 0; i < 8; i++) params.white[i] = analogRead(sensor[i]);
     SerialPort.println("done");
   }
 
   EEPROM_writeAnything(0, params);
 }
+```
 
-Alleen de interupt moet nog bij geprogrameerd worden
+Alleen de interrupt moet nog geprogrammeerd worden.
