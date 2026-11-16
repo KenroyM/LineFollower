@@ -147,3 +147,4 @@ void onCalibrate()
   EEPROM_writeAnything(0, params);
 }
 ```
+De interuppt moet er nog juist bij geprogrameerd worden
