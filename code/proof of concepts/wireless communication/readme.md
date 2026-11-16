@@ -29,7 +29,7 @@ Deze POC toont aan dat duplexcommunicatie mogelijk is tussen een Arduino Nano en
 
 De HC-08 communiceert via UART met de Arduino Nano en via Bluetooth met de smartphone. De communicatie verloopt in beide richtingen.
 
-De Arduino verzamelt de ontvangen tekens tot een regeleinde (`\n`) wordt ontvangen. Daarna stuurt hij het volledige bericht terug naar de smartphone. Daarnaast stuurt de Arduino automatisch elke seconde het bericht `Hallo vanaf Arduino`.
+De Arduino verzamelt de ontvangen tekens tot een regeleinde (`\n`) wordt ontvangen. Daarna stuurt hij het volledige bericht terug naar de smartphone. Daarnaast stuurt de Arduino automatisch elke seconde een bericht naar de smartphone.
 
 ### Gebruiksaanwijzing
 
@@ -41,3 +41,7 @@ De Arduino verzamelt de ontvangen tekens tot een regeleinde (`\n`) wordt ontvang
 6. Controleer of de Arduino de volledige zin terugstuurt met `Ontvangen:` ervoor.
 
 Hiermee wordt aangetoond dat de Arduino Nano en smartphone gegevens in beide richtingen kunnen uitwisselen.
+
+### Opmerking bij het uploaden
+
+De HC-08-module is op pinheaders gemonteerd en kan worden losgekoppeld wanneer er code naar de Arduino wordt geüpload. Omdat de module gebruikmaakt van de RX- en TX-pinnen (D0/RX en D1/TX), moet je de module tijdens het uploaden loskoppelen. Sluit de module na het uploaden weer aan.
