@@ -1,4 +1,4 @@
-
+```cpp
 #include "SerialCommand.h"
 #include "EEPROMAnything.h"
 
@@ -226,3 +226,4 @@ void onRun()
   char* parameter = sCmd.next();
   run = (parameter != NULL && strcmp(parameter, "on") == 0);
 }
+```
